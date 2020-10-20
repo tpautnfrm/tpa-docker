@@ -1,0 +1,13 @@
+Primer Ejemplo:
+---------------
+
+
+docker build -t "image-ex1" .
+
+docker run --name "container-ex1" -d -p 8080:8080 image-ex1
+
+Images layers
+---------------
+
+docker history #ID 
+
