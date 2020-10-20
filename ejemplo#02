@@ -1,9 +1,10 @@
-git clone repositorio-remoto
-
-docker build -t "nombre-imagen" .
-
-docker run --name "nombre-contenedor" -d -p 8080:8080 nombre-imagen
+git clone https://github.com/tpautnfrm/app-docker.git
 
 # https://hub.docker.com/_/maven?tab=description 
 
 docker run -it --rm --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven mvn clean package -Dmaven.test.skip=true
+
+docker build -t "image-ex02" .
+
+docker run --name "container-ex02" -d -p 8080:8080 image-ex02
+
