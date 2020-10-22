@@ -1,0 +1,48 @@
+Descargar Imágen mysql/mysql-server:8.0
+=========================================
+
+docker pull mysql/mysql-server:8.0 
+
+docker run --name tpa-db-container 
+-e MYSQL_DATABASE=tpa-db 
+-e MYSQL_USER=tpa-usr 
+-e MYSQL_PASSWORD=tpa-pwd  
+-e MYSQL_ROOT_PASSWORD=rootPwd 
+-d 
+-p 3306:3306 mysql/mysql-server:8.0 
+
+
+docker exec -it tpa-db-container bash
+ 
+docker ps -a
+
+
+Acceder a la DB mysql/mysql-server:8.0
+======================================
+
+
+docker exec -it tpa-db-container bash
+ 
+mysql -utpa-usr -ptpa-pwd 
+
+use tpa-db; 
+
+CREATE TABLE tpa_table_1 
+( id INT NOT NULL AUTO_INCREMENT
+, string VARCHAR(100) NOT NULL
+, PRIMARY KEY ( id ));
+
+ select * from tpa_table_1; 
+
+ insert into tpa_table_1 (string) values("ejemplo");
+
+ commit;
+
+ select * from tpa_table_1 ;
+ 
+ Descargar imágen de PhpMyAdmin
+ ================================
+ 
+ docker pull phpmyadmin/phpmyadmin:latest docker run --name my-own-phpmyadmin -d --link tpa-db-container:db -p 8081:80 phpmyadmin/phpmyadmin 
+
+docker ps
